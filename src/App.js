@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Form from './components/Form'
+import Render from './components/Render'
 
-function App() {
+const App = () => {
+    const [test, setTest]=useState([{name: "SEZIM"}])
+
+    const getProduct=(data)=>{
+        console.log(data);
+        setTest([...test, data])
+    }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <Form onGetData={getProduct}/>
+
+        {
+            test.map((el)=>{
+                return <Render  name={el.name} />
+            })
+        }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
